@@ -25,6 +25,8 @@ public class PersonalBanking extends BasePage {
 	public String getPersonalBankingHeading() {
 		return PersonalBankingHeading.getText();
 	}
-	
+	public Boolean isPersonalCheckinExist(){
+		return PersonalCheckin.isDisplayed();
+	}
 
 }

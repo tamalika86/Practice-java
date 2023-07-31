@@ -1,46 +1,32 @@
 package testCases;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.CommercialBanking;
 import pageObjects.HomePage;
+import utilities.Util;
 
+//@Listeners({MethodListener.class})
 public class CommercialBankingTest extends InIt{
-
-WebDriver wb = super.driver;
-
-
-    @FindBy(xpath = "xpath=//a[contains(text(),'Commercial Savings')]")
-    WebElement commercialBanking;
-
-	HomePage hp = new HomePage(driver);
-   // CommercialBanking cb = new CommercialBanking(driver);
+	HomePage hp;
+   CommercialBanking cb;
     @Test
-    public void checkCommercialBankingLink(){
-      System.out.println();
-         //commercialBanking.click();
-        try {
-            Thread.sleep(5000);
-            driver.findElement(By.xpath("xpath=//a[contains(text(),'Commercial Savings')]")).click();
-
-           // commercialBanking.click();
-            Thread.sleep(5000);
-        }catch (Exception e){}
+    public void checkCommercialBankingLink() throws Exception{
+        hp = new HomePage(driver);
+        cb = new CommercialBanking(driver);
         hp.clickCommercialBanking();
+        Util.takeScreenShots(driver, methodName);
+        Assert.assertEquals(cb.getCommercialLendingHeading(),"COMMERCIAL BANKING");
     }
 
-   // @Test
-   /* public void verifyCommercialBankingHeading(){
-        try {
-            cb.clickCommercialLendingLink();
-            Assert.assertEquals(cb.getCommercialLendingHeading(),"COMMERCIAL BANKING");
-        }
-        catch (Exception e){
+    @Test
+    public void checkCommercialBankingDeatilPage() throws Exception{
+        hp = new HomePage(driver);
+        cb = new CommercialBanking(driver);
+        hp.clickCommercialBanking();
+        cb.clickCommercialBankingHeading();
+        Util.takeScreenShots(driver, methodName);
+        Assert.assertEquals(cb.getCommercialBankingUrl(),"https://www.websterbank.com/commercial-banking/");
+    }
 
-        }*/
-   // }
 }

@@ -1,5 +1,6 @@
 package testCases;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
@@ -15,22 +16,30 @@ public  class InIt {
 	
 	
 	public  WebDriver driver;
+	public String methodName;
 	
-	@BeforeMethod
-	void setUp() {
+	@BeforeClass
+	void intialize() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.get("https://www.websterbank.com/");	
-		driver.manage().window().maximize();
-		
 	}
-	
+	@BeforeMethod
+	void setup(Method method){
+		driver.get("https://www.websterbank.com/");
+		driver.manage().window().maximize();
+		methodName = method.getName();
+	}
+
 	@AfterMethod
+	public void nameAfter(Method method)
+	{
+		System.out.println("Test name: " + method.getName());
+	}
+
+	@AfterClass
 	void tearDown() {
 		driver.quit();
-		
-	}
-	
 
+	}
 }

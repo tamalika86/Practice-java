@@ -3,21 +3,22 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+import org.openqa.selenium.support.PageFactory;
 public class CommercialBanking extends BasePage{
-	
-	WebDriver driver;
-	public CommercialBanking(WebDriver driver) {
+
+	public 	CommercialBanking(WebDriver driver) {
 		super(driver);
+		//PageFactory.initElements(driver,this);
 	}
 	
 	
 	//Elements
 	@FindBy(linkText="https://www.websterbank.com/commercial-banking/lending/")
 	WebElement commercialLending;
-	
-	@FindBy(xpath = "xpath=//a[contains(text(),'Commercial Savings')]")
+	@FindBy(xpath = "//div[@class='submenu-heading']//a[contains(text(),'Commercial Banking')]")
 	WebElement commercialBankingHeading;
+	@FindBy(xpath = "//a[contains(text(),'Commercial Banking')]")
+	WebElement commercialBankingHeading2;
 	
 	//Action
 	public void clickCommercialLendingLink() {
@@ -31,5 +32,11 @@ public class CommercialBanking extends BasePage{
 			return(e.getMessage());
 		}
 	}
+	 public void clickCommercialBankingHeading(){
+		commercialBankingHeading2.click();
+	 }
+	 public String getCommercialBankingUrl(){
+		return driver.getCurrentUrl();
+	 }
 	
 }

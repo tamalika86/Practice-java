@@ -1,13 +1,14 @@
 package testCases;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.PersonalBanking;
 
 public class PersonalBankingTest extends InIt{
 
-    HomePage hp = new HomePage(driver);
-    PersonalBanking pb = new PersonalBanking(driver);
+    HomePage hp;
+    PersonalBanking pb;
 
     @Test
     public void verifyPersonalBanking(){
@@ -16,8 +17,20 @@ public class PersonalBankingTest extends InIt{
 
     @Test
     public void VerifyHeading(){
+        hp= new HomePage(driver);
+        pb = new PersonalBanking(driver);
         hp.clickPersonalBanking();
-        String heading = pb.getPersonalBankingHeading();
+        //String heading = ;
+        Assert.assertEquals(pb.getPersonalBankingHeading(),"PERSONAL BANKING");
+    }
+
+    @Test
+    public void VerifyPersonalCheckinText(){
+        hp= new HomePage(driver);
+        pb = new PersonalBanking(driver);
+        hp.clickPersonalBanking();
+        //String heading = ;
+        Assert.assertEquals(pb.isPersonalCheckinExist(),true);
 
     }
 
