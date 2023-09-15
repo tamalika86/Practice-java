@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="classes" thread-count="4">
+    <test verbose="2" preserve-order="true" name="C:/Users/tamal/eclipse-workspace/PracticeJave">
+        <parameter name="url" value="https://www.websterbank.com/"></parameter>
+
+        <classes>
+            <class name="testCases.CommercialBankingTest"></class>
+            <class name="testCases.HomePageTest"></class>
+            <class name="testCases.PersonalBankingTest"></class>
+        </classes>
+    </test>
+</suite>
